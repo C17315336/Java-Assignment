@@ -39,7 +39,7 @@ public class Control extends JFrame {
 	public Control() {
 
 		// Create Form Frame
-		super("ThaiCreate.Com Java GUI Tutorial");
+		super("Eoghan's Sample Upload");
 		setSize(668, 345);
 		setLocation(500, 280);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -56,12 +56,12 @@ public class Control extends JFrame {
 		
 		// Table Model
 		final DefaultTableModel model = (DefaultTableModel)table.getModel();
-		model.addColumn("CustomerID");
+		model.addColumn("Stop Number");
+		model.addColumn("Name without Locality");
+		model.addColumn("Locality");
 		model.addColumn("Name");
-		model.addColumn("Email");
-		model.addColumn("CountryCode");
-		model.addColumn("Budget");
-		model.addColumn("Used");
+		model.addColumn("Easting");
+		model.addColumn("Northing");
 		
 		// ScrollPane
 		JScrollPane scroll = new JScrollPane(table);
@@ -138,30 +138,30 @@ public class Control extends JFrame {
 			Class.forName("com.mysql.jdbc.Driver");
 
 			connect = DriverManager.getConnection(""
-					+ "jdbc:mysql://localhost/mydatabase"
-					+ "?user=root&password=root");
+					+ "jdbc:mysql://localhost:3306/Java"
+					+ "?user=user1&password=letmein");
 
 			s = connect.createStatement();
 			
 			for(int i = 0; i<table.getRowCount();i++)
 			{
-				String CustomerID = table.getValueAt(i, 0).toString();
-				String Name = table.getValueAt(i, 1).toString();
-				String Email = table.getValueAt(i, 2).toString();
-				String CountryCode = table.getValueAt(i, 3).toString();
-				String Budget = table.getValueAt(i, 4).toString();
-				String Used = table.getValueAt(i, 5).toString();
+				String StopNumber = table.getValueAt(i, 0).toString();
+				String NamewithoutLocality = table.getValueAt(i, 1).toString();
+				String Locality = table.getValueAt(i, 2).toString();
+				String Name = table.getValueAt(i, 3).toString();
+				String Easting = table.getValueAt(i, 4).toString();
+				String Northing = table.getValueAt(i, 5).toString();
 				
 				// SQL Insert
 
-				String sql = "INSERT INTO customer "
-						+ "(CustomerID,Name,Email,CountryCode,Budget,Used) "
-						+ "VALUES ('" + CustomerID + "','"
+				String sql = "INSERT INTO Assignment "
+						+ "(StopNumber,NamewithoutLocality,Locality,Name,Easting,Northing) "
+						+ "VALUES ('" + StopNumber + "','"
+						+ NamewithoutLocality + "','"
+						+ Locality + "'" + ",'"
 						+ Name + "','"
-						+ Email + "'" + ",'"
-						+ CountryCode + "','"
-						+ Budget + "','"
-						+ Used + "') ";
+						+ Easting + "','"
+						+ Northing + "') ";
 				s.execute(sql);
 			}
 				
