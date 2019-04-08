@@ -137,9 +137,7 @@ public class Control extends JFrame {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 
-			connect = DriverManager.getConnection(""
-					+ "jdbc:mysql://localhost:3306/Java"
-					+ "?user=user1&password=letmein");
+			connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/java", "Eoghan", "letmein");
 
 			s = connect.createStatement();
 			
