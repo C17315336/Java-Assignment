@@ -8,6 +8,7 @@ public class ConnectionInfo {
 	private static String dbdata = "java";
 	private static String dbtable = "assignment";
 	private static String dburl = "jdbc:mysql://" + dbdomain + ":" + dbport + "/" + dbdata;
+	private static int header = 0;
 	
 	
 	public static String getDbdomain() {
@@ -51,6 +52,12 @@ public class ConnectionInfo {
 	}
 	public static void setDburl(String dburl) {
 		ConnectionInfo.dburl = dburl;
+	}
+	public static int getHeader() {
+		return header;
+	}
+	public static void setHeader(int header) {
+		ConnectionInfo.header = header;
 	}
 	
 	

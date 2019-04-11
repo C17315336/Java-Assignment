@@ -21,7 +21,7 @@ public class SaveData {
 
 			s = connect.createStatement();
 
-			for (int i = 0; i < tbTable.getRowCount(); i++) {
+			for (int i = ConnectionInfo.getHeader(); i < tbTable.getRowCount(); i++) {
 				String StopNumber = tbTable.getValueAt(i, 0).toString();
 				String NamewithoutLocality = tbTable.getValueAt(i, 1).toString();
 				String Locality = tbTable.getValueAt(i, 2).toString();

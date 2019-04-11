@@ -6,10 +6,14 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
 import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
@@ -22,6 +26,8 @@ import javax.swing.JTable;
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import javax.swing.JTextField;
+import javax.swing.RowSorter;
+import javax.swing.SortOrder;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
@@ -38,6 +44,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
@@ -187,6 +195,7 @@ public class GUI extends JFrame {
 			cbHeader = new JCheckBox("Header Row");
 			cbHeader.setRolloverEnabled(true);
 			cbHeader.setToolTipText("Check this option if your CSV file contains a header row");
+			cbHeader.addActionListener(this);
 			gbcWindow.gridx = 0;
 			gbcWindow.gridy = 5;
 			gbcWindow.gridwidth = 1;
@@ -355,20 +364,68 @@ public class GUI extends JFrame {
 			}
 			if (e.getSource() == btStop) {
 				// Action for btStop
+				new SortDataAs(tbTable, 0);
 			}
 			if (e.getSource() == btNameLocal) {
 				// Action for btNameLocal
+				new SortDataAs(tbTable, 1);
 			}
 			if (e.getSource() == btLocality) {
 				// Action for btLocality
+				new SortDataAs(tbTable, 2);
 			}
 			if (e.getSource() == btName) {
 				// Action for btName
+				new SortDataAs(tbTable, 3);
 			}
 			if (e.getSource() == btPullDB) {
 				// Action for btPullDB
 				new PullData(tbTable);
 			}
+			if (e.getSource() == cbHeader) {
+				// Action for cbHeader
+				if (cbHeader.isSelected()) {
+					ConnectionInfo.setHeader(1);
+				} else {
+					ConnectionInfo.setHeader(0);
+				}
+			}
+
+			btStop.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (e.getButton() == MouseEvent.BUTTON3) {
+						new SortDataDs(tbTable, 0);
+					}
+				}
+			});
+			
+			btNameLocal.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (e.getButton() == MouseEvent.BUTTON3) {
+						new SortDataDs(tbTable, 1);
+					}
+				}
+			});
+			
+			btLocality.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (e.getButton() == MouseEvent.BUTTON3) {
+						new SortDataDs(tbTable, 2);
+					}
+				}
+			});
+			
+			btName.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					if (e.getButton() == MouseEvent.BUTTON3) {
+						new SortDataDs(tbTable, 3);
+					}
+				}
+			});
 		}
 	}
 
