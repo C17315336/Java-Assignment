@@ -1,16 +1,18 @@
 package com.main.assignment;
 
-import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class Control extends JFrame {
-
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				GUI form = new GUI();
-				form.setVisible(true);
-			}
-		});
+	public static void main(String args[]) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (ClassNotFoundException e) {
+		} catch (InstantiationException e) {
+		} catch (IllegalAccessException e) {
+		} catch (UnsupportedLookAndFeelException e) {
+		}
+		GUI theGUI = new GUI();
 	}
 }
