@@ -126,7 +126,7 @@ public class GUI extends JFrame {
 		Statement s = null;
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
 			connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/java", "Eoghan", "letmein");
 
