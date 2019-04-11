@@ -13,6 +13,6 @@ public class Control extends JFrame {
 		} catch (IllegalAccessException e) {
 		} catch (UnsupportedLookAndFeelException e) {
 		}
-		GUI theGUI = new GUI();
+		new GUI();
 	}
 }

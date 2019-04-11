@@ -14,9 +14,10 @@ public class SaveData {
 		Statement s = null;
 
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 
-			connect = DriverManager.getConnection("jdbc:mysql://localhost:8889/java", "Eoghan", "letmein");
+			connect = DriverManager.getConnection(ConnectionInfo.getDburl(), ConnectionInfo.getDbuser(), ConnectionInfo.getDbpass());
+
 
 			s = connect.createStatement();
 
@@ -30,8 +31,8 @@ public class SaveData {
 
 				// SQL Insert
 
-				String sql = "INSERT INTO Assignment "
-						+ "(StopNumber,NamewithoutLocality,Locality,Name,Easting,Northing) " + "VALUES ('" + StopNumber
+				String sql = "INSERT INTO " + ConnectionInfo.getDbtable()
+						+ " (StopNumber,NamewithoutLocality,Locality,Name,Easting,Northing) " + "VALUES ('" + StopNumber
 						+ "','" + NamewithoutLocality + "','" + Locality + "'" + ",'" + Name + "','" + Easting + "','"
 						+ Northing + "') ";
 				s.execute(sql);

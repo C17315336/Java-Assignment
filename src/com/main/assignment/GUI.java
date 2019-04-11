@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.BorderFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -76,6 +77,7 @@ public class GUI extends JFrame {
 		private JButton btLocality;
 		private JButton btName;
 		private JLabel lbOutput;
+		private JButton btPullDB;
 
 		/**
 		 * Constructor for the Window object
@@ -94,8 +96,8 @@ public class GUI extends JFrame {
 			tbTable.setSelectionBackground(new Color(212, 212, 212));
 			tbTable.setSelectionForeground(new Color(0, 0, 0));
 			final DefaultTableModel model = (DefaultTableModel) tbTable.getModel();
-			model.addColumn("Stop Number");
-			model.addColumn("Name without Locality");
+			model.addColumn("StopNumber");
+			model.addColumn("NamewithoutLocality");
 			model.addColumn("Locality");
 			model.addColumn("Name");
 			model.addColumn("Easting");
@@ -172,7 +174,7 @@ public class GUI extends JFrame {
 			btSelectFile.setToolTipText("Select a CSV file to import");
 			btSelectFile.addActionListener(this);
 			gbcWindow.gridx = 0;
-			gbcWindow.gridy = 2;
+			gbcWindow.gridy = 3;
 			gbcWindow.gridwidth = 1;
 			gbcWindow.gridheight = 1;
 			gbcWindow.fill = GridBagConstraints.BOTH;
@@ -186,7 +188,7 @@ public class GUI extends JFrame {
 			cbHeader.setRolloverEnabled(true);
 			cbHeader.setToolTipText("Check this option if your CSV file contains a header row");
 			gbcWindow.gridx = 0;
-			gbcWindow.gridy = 4;
+			gbcWindow.gridy = 5;
 			gbcWindow.gridwidth = 1;
 			gbcWindow.gridheight = 1;
 			gbcWindow.fill = GridBagConstraints.BOTH;
@@ -202,7 +204,7 @@ public class GUI extends JFrame {
 			btImportFile.setToolTipText("Import selected file to database");
 			btImportFile.addActionListener(this);
 			gbcWindow.gridx = 0;
-			gbcWindow.gridy = 3;
+			gbcWindow.gridy = 4;
 			gbcWindow.gridwidth = 1;
 			gbcWindow.gridheight = 1;
 			gbcWindow.fill = GridBagConstraints.BOTH;
@@ -216,7 +218,7 @@ public class GUI extends JFrame {
 			btQuit.setRolloverEnabled(true);
 			btQuit.addActionListener(this);
 			gbcWindow.gridx = 0;
-			gbcWindow.gridy = 5;
+			gbcWindow.gridy = 6;
 			gbcWindow.gridwidth = 1;
 			gbcWindow.gridheight = 1;
 			gbcWindow.fill = GridBagConstraints.BOTH;
@@ -230,7 +232,7 @@ public class GUI extends JFrame {
 			btAdmin.setRolloverEnabled(true);
 			btAdmin.addActionListener(this);
 			gbcWindow.gridx = 0;
-			gbcWindow.gridy = 7;
+			gbcWindow.gridy = 8;
 			gbcWindow.gridwidth = 1;
 			gbcWindow.gridheight = 1;
 			gbcWindow.fill = GridBagConstraints.HORIZONTAL;
@@ -244,7 +246,7 @@ public class GUI extends JFrame {
 			btStop.setRolloverEnabled(true);
 			btStop.addActionListener(this);
 			gbcWindow.gridx = 1;
-			gbcWindow.gridy = 8;
+			gbcWindow.gridy = 9;
 			gbcWindow.gridwidth = 1;
 			gbcWindow.gridheight = 1;
 			gbcWindow.fill = GridBagConstraints.NONE;
@@ -258,7 +260,7 @@ public class GUI extends JFrame {
 			btNameLocal.setRolloverEnabled(true);
 			btNameLocal.addActionListener(this);
 			gbcWindow.gridx = 2;
-			gbcWindow.gridy = 8;
+			gbcWindow.gridy = 9;
 			gbcWindow.gridwidth = 1;
 			gbcWindow.gridheight = 1;
 			gbcWindow.fill = GridBagConstraints.NONE;
@@ -272,7 +274,7 @@ public class GUI extends JFrame {
 			btLocality.setRolloverEnabled(true);
 			btLocality.addActionListener(this);
 			gbcWindow.gridx = 3;
-			gbcWindow.gridy = 8;
+			gbcWindow.gridy = 9;
 			gbcWindow.gridwidth = 1;
 			gbcWindow.gridheight = 1;
 			gbcWindow.fill = GridBagConstraints.NONE;
@@ -286,7 +288,7 @@ public class GUI extends JFrame {
 			btName.setRolloverEnabled(true);
 			btName.addActionListener(this);
 			gbcWindow.gridx = 4;
-			gbcWindow.gridy = 8;
+			gbcWindow.gridy = 9;
 			gbcWindow.gridwidth = 1;
 			gbcWindow.gridheight = 1;
 			gbcWindow.fill = GridBagConstraints.NONE;
@@ -299,15 +301,29 @@ public class GUI extends JFrame {
 			lbOutput = new JLabel("");
 			JScrollPane scpOutput = new JScrollPane(lbOutput);
 			gbcWindow.gridx = 0;
-			gbcWindow.gridy = 6;
+			gbcWindow.gridy = 7;
 			gbcWindow.gridwidth = 1;
 			gbcWindow.gridheight = 1;
-			gbcWindow.fill = GridBagConstraints.NONE;
+			gbcWindow.fill = GridBagConstraints.HORIZONTAL;
 			gbcWindow.weightx = 1;
 			gbcWindow.weighty = 1;
 			gbcWindow.anchor = GridBagConstraints.NORTH;
 			gbWindow.setConstraints(scpOutput, gbcWindow);
 			add(scpOutput);
+
+			btPullDB = new JButton("Pull Database");
+			btPullDB.setForeground(new Color(255, 165, 0));
+			btPullDB.addActionListener(this);
+			gbcWindow.gridx = 0;
+			gbcWindow.gridy = 2;
+			gbcWindow.gridwidth = 1;
+			gbcWindow.gridheight = 1;
+			gbcWindow.fill = GridBagConstraints.BOTH;
+			gbcWindow.weightx = 1;
+			gbcWindow.weighty = 0;
+			gbcWindow.anchor = GridBagConstraints.NORTH;
+			gbWindow.setConstraints(btPullDB, gbcWindow);
+			add(btPullDB);
 		}
 
 		/**
@@ -318,6 +334,7 @@ public class GUI extends JFrame {
 			}
 			if (e.getSource() == btClearDB) {
 				// Action for btClearDB
+				new EraseData();
 			}
 			if (e.getSource() == btSelectFile) {
 				// Action for btSelectFile
@@ -328,9 +345,13 @@ public class GUI extends JFrame {
 			}
 			if (e.getSource() == btQuit) {
 				// Action for btQuit
+				System.exit(0); // stop program
+				theGUI.dispose(); // close window
+				theGUI.setVisible(false);
 			}
 			if (e.getSource() == btAdmin) {
 				// Action for btAdmin
+				new Admin();
 			}
 			if (e.getSource() == btStop) {
 				// Action for btStop
@@ -344,16 +365,19 @@ public class GUI extends JFrame {
 			if (e.getSource() == btName) {
 				// Action for btName
 			}
+			if (e.getSource() == btPullDB) {
+				// Action for btPullDB
+				new PullData(tbTable);
+			}
 		}
 	}
 
 	Window pnWindow;
-	
 
 	/**
 	 */
 	public GUI() {
-		super("TITLE");
+		super("DEMO");
 
 		pnWindow = new Window();
 
