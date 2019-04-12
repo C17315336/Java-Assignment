@@ -41,7 +41,6 @@ public class GUI extends JFrame {
 		 * bt = Button
 		 * cb = Check Box
 		 * ta = Text Area
-		 * 
 		 */
 		private JTable tbTable;
 		private JTextField tfFilter;
