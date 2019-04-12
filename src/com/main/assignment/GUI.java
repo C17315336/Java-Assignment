@@ -119,7 +119,6 @@ public class GUI extends JFrame {
 
 			// Text Field for user to input filter criteria
 			tfFilter = new JTextField();
-			tfFilter = RowFilterUtil.createRowFilter(tbTable);
 			tfFilter.setColumns(10);
 			gbcWindow.gridx = 5;
 			gbcWindow.gridy = 0;
