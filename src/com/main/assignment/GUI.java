@@ -40,8 +40,8 @@ public class GUI extends JFrame {
 		 * lb = Label
 		 * bt = Button
 		 * cb = Check Box
-		 * ta = Text
-		 * Area
+		 * ta = Text Area
+		 * 
 		 */
 		private JTable tbTable;
 		private JTextField tfFilter;

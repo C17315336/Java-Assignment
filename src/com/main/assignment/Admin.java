@@ -1,5 +1,19 @@
 package com.main.assignment;
 
+/**
+ * Admin Class for Java Assignment
+ * 	Class used to display interaction to user
+ *
+ * Compiled on the 12th of April 2019
+ * By: 	Eoghan Byrne
+ * 		eoghan.byrne4@mydit.ie
+ *
+ * Using JavaSE 1.8
+ * with references libs of;
+ * 		- MySQL Connector
+ * 		- DbUtils
+ */
+
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -13,18 +27,17 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-/**
- * @author Administrator
- * @created April 11, 2019
- */
 public class Admin extends JFrame {
 	static Admin theAdmin;
 
-	/**
-	 * @author Administrator
-	 * @created April 11, 2019
-	 */
 	class AdminInput extends JPanel implements ActionListener {
+		/**
+		 * Attributes for the AdminInpurt object
+		 *
+		 * lb = Label
+		 * tf = Text Field
+		 * 
+		 */
 		private JLabel lbInfo;
 		private JLabel lbDomain;
 		private JLabel lbPort;
@@ -46,10 +59,14 @@ public class Admin extends JFrame {
 		public AdminInput() {
 			super();
 
+			// Layout set to grid mode
 			GridBagLayout gbAdminInput = new GridBagLayout();
 			GridBagConstraints gbcAdminInput = new GridBagConstraints();
 			setLayout(gbAdminInput);
 
+			
+			
+			// Labels
 			lbInfo = new JLabel("Enter your connection details below");
 			gbcAdminInput.gridx = 1;
 			gbcAdminInput.gridy = 1;
@@ -63,6 +80,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(lbInfo, gbcAdminInput);
 			add(lbInfo);
 
+			
 			lbDomain = new JLabel("Domain");
 			gbcAdminInput.gridx = 1;
 			gbcAdminInput.gridy = 2;
@@ -76,6 +94,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(lbDomain, gbcAdminInput);
 			add(lbDomain);
 
+			
 			lbPort = new JLabel("Port");
 			gbcAdminInput.gridx = 1;
 			gbcAdminInput.gridy = 3;
@@ -89,6 +108,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(lbPort, gbcAdminInput);
 			add(lbPort);
 
+			
 			lbUsername = new JLabel("Username");
 			gbcAdminInput.gridx = 1;
 			gbcAdminInput.gridy = 4;
@@ -102,6 +122,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(lbUsername, gbcAdminInput);
 			add(lbUsername);
 
+			
 			lbPassword = new JLabel("Password");
 			gbcAdminInput.gridx = 1;
 			gbcAdminInput.gridy = 5;
@@ -115,6 +136,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(lbPassword, gbcAdminInput);
 			add(lbPassword);
 
+			
 			lbDatabase = new JLabel("Database");
 			gbcAdminInput.gridx = 1;
 			gbcAdminInput.gridy = 6;
@@ -128,6 +150,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(lbDatabase, gbcAdminInput);
 			add(lbDatabase);
 
+			
 			lbTable = new JLabel("Table");
 			gbcAdminInput.gridx = 1;
 			gbcAdminInput.gridy = 7;
@@ -141,6 +164,9 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(lbTable, gbcAdminInput);
 			add(lbTable);
 
+			
+			
+			// Text fields
 			tfDomain = new JTextField(ConnectionInfo.getDbdomain());
 			gbcAdminInput.gridx = 2;
 			gbcAdminInput.gridy = 2;
@@ -154,6 +180,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(tfDomain, gbcAdminInput);
 			add(tfDomain);
 
+			
 			tfPort = new JTextField(ConnectionInfo.getDbport());
 			gbcAdminInput.gridx = 2;
 			gbcAdminInput.gridy = 3;
@@ -167,6 +194,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(tfPort, gbcAdminInput);
 			add(tfPort);
 
+			
 			tfUsername = new JTextField(ConnectionInfo.getDbuser());
 			gbcAdminInput.gridx = 2;
 			gbcAdminInput.gridy = 4;
@@ -180,6 +208,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(tfUsername, gbcAdminInput);
 			add(tfUsername);
 
+			
 			tfPassword = new JTextField(ConnectionInfo.getDbpass());
 			gbcAdminInput.gridx = 2;
 			gbcAdminInput.gridy = 5;
@@ -193,6 +222,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(tfPassword, gbcAdminInput);
 			add(tfPassword);
 
+			
 			tfDatabase = new JTextField(ConnectionInfo.getDbdata());
 			gbcAdminInput.gridx = 2;
 			gbcAdminInput.gridy = 6;
@@ -206,6 +236,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(tfDatabase, gbcAdminInput);
 			add(tfDatabase);
 
+			
 			tfTable = new JTextField(ConnectionInfo.getDbtable());
 			gbcAdminInput.gridx = 2;
 			gbcAdminInput.gridy = 7;
@@ -219,6 +250,7 @@ public class Admin extends JFrame {
 			gbAdminInput.setConstraints(tfTable, gbcAdminInput);
 			add(tfTable);
 
+			
 			btSubmit = new JButton("Save");
 			btSubmit.addActionListener(this);
 			gbcAdminInput.gridx = 2;
@@ -244,7 +276,7 @@ public class Admin extends JFrame {
 				ConnectionInfo.setDbpass(tfPassword.getText());
 				ConnectionInfo.setDbdata(tfDatabase.getText());
 				ConnectionInfo.setDbtable(tfTable.getText());
-				//System.out.println("jdbc:mysql://" + ConnectionInfo.getDbdomain() + ":" + ConnectionInfo.getDbport() + "/" + ConnectionInfo.getDbdata() + ", " + ConnectionInfo.getDbuser() + ", " + ConnectionInfo.getDbpass());
+				//System.out.println("jdbc:mysql://" + ConnectionInfo.getDbdomain() + ":" + ConnectionInfo.getDbport() + "/" + ConnectionInfo.getDbdata() + ", " + ConnectionInfo.getDbuser() + ", " + ConnectionInfo.getDbpass()); <-- Used for debug
 				ConnectionInfo.setDburl("jdbc:mysql://" + ConnectionInfo.getDbdomain() + ":" + ConnectionInfo.getDbport() + "/" + ConnectionInfo.getDbdata());
 			}
 		}
@@ -268,7 +300,7 @@ public class Admin extends JFrame {
 	/**
 	 */
 	public Admin() {
-		super("TITLE");
+		super("Admin Config");
 
 		pnAdminInput = new AdminInput();
 
