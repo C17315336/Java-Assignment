@@ -8,9 +8,9 @@ Completed by Eoghan Byrne (C17315336)
 [Brief](#brief)  
 [Overview](#overview)  
 [Classes](#classes)  
-  [Control](#control)  
-  [GUI](#gui)  
-  [Admin](#admin)  
+- [Control](#control)  
+- [GUI](#gui)  
+- [Admin](#admin)  
 
 ## Overview
 The program is designed to allow a user to launch the application, import their cleaned data of the [TFI Bus Stops](https://data.gov.ie/dataset/b61d8abf-efd1-4476-a29b-afc8c2edd6ba/resource/6db74b2d-c7d3-4faf-a922-851c042715ba) and see filtered views with row counts on each query  
