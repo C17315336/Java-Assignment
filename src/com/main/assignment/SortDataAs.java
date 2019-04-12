@@ -1,5 +1,19 @@
 package com.main.assignment;
 
+/**
+ * SortDataAs Class for Java Assignment
+ * 	Class used to sort table contents ASCENDING
+ *
+ * Compiled on the 12th of April 2019
+ * By: 	Eoghan Byrne
+ * 		eoghan.byrne4@mydit.ie
+ *
+ * Using JavaSE 1.8
+ * with references libs of;
+ * 		- MySQL Connector
+ * 		- DbUtils
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
