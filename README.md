@@ -5,7 +5,6 @@ Completed by Eoghan Byrne (C17315336)
 [eoghan.byrne4@mydit.ie](mailto:eoghan.byrne4@mydit.ie)
 
 ## Index
-[Brief](#brief)  
 [Overview](#overview)  
 [Classes](#classes)  
 - [Control](#control)  
