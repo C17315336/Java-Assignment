@@ -57,7 +57,6 @@ public class LoadData {
 				}
 				br.close();
 			} catch (IOException ex) {
-				// TODO Auto-generated catch block
 				ex.printStackTrace();
 			}
 
