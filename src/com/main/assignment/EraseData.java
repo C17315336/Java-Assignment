@@ -45,8 +45,8 @@ public class EraseData {
 	}
 
 	try {
-		if (s != null) {
-			s.close();
+		if (state != null) {
+			state.close();
 			connect.close();
 		}
 	} catch (SQLException e) {
