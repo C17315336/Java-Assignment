@@ -208,6 +208,7 @@ public class GUI extends JFrame {
 			btImportFile.setRolloverEnabled(true);
 			btImportFile.setToolTipText("Import selected file to database");
 			btImportFile.addActionListener(this);
+			btImportFile.setEnabled(false);
 			gbcWindow.gridx = 0;
 			gbcWindow.gridy = 4;
 			gbcWindow.gridwidth = 1;
@@ -379,12 +380,14 @@ public class GUI extends JFrame {
 				// Action for btSelectFile
 				// Select data
 				new LoadData(tbTable, taOutput);
+				btImportFile.setEnabled(true);
 			}
 			if (e.getSource() == btImportFile) {
 				// Action for btImportFile
 				// Imports data
 				new SaveData(tbTable);
 				taOutput.append("\nTotal rows of: " + tbTable.getRowCount() + " imported\n\n");
+				btImportFile.setEnabled(false);
 			}
 			if (e.getSource() == cbHeader) {
 				// Action for cbHeader

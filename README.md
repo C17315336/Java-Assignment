@@ -110,6 +110,10 @@ It does this by connecting to the database and executing the line of _SQL_
 ``` SQL
 DELETE FROM `assignment` WHERE `StopNumber` > 0
 ```  
-This removes everything in the database as there is no stop numbers 0
+This removes everything in the database as there are no stop numbers 0
 
 ### Filter
+This class takes the users input from the text field and applies it to the `setRowFilter` which will then update the table's content
+
+### LoadData
+This class will take the values loaded from the CSV
