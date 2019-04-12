@@ -35,11 +35,10 @@ public class EraseData {
 				// SQL Insert
 				String sql = "DELETE FROM `" + ConnectionInfo.getDbtable() + "` WHERE `StopNumber` > 0";
 				state.execute(sql);
-				
+
 		// Feedback to user
 		JOptionPane.showMessageDialog(null, "Data Erased Successfully");
 	} catch (Exception ex) {
-		// TODO Auto-generated catch block
 		JOptionPane.showMessageDialog(null, ex.getMessage());
 		ex.printStackTrace();
 	}
@@ -50,7 +49,6 @@ public class EraseData {
 			connect.close();
 		}
 	} catch (SQLException e) {
-		// TODO Auto-generated catch block
 		System.out.println(e.getMessage());
 		e.printStackTrace();
 	}
