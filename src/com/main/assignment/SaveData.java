@@ -51,7 +51,6 @@ public class SaveData {
 			}
 			JOptionPane.showMessageDialog(null, "Import Data Successfully");
 		} catch (Exception ex) {
-			// TODO Auto-generated catch block
 			JOptionPane.showMessageDialog(null, ex.getMessage());
 			ex.printStackTrace();
 		}
@@ -62,7 +61,6 @@ public class SaveData {
 				connect.close();
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
