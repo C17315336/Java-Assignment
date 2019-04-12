@@ -18,10 +18,12 @@ Completed by Eoghan Byrne (C17315336)
 - [PullData](#pulldata)  
 - [SaveData](#savedata)  
 - [SortDataAs & SortDataDs](#sortdataas-&-sortdatads)  
+
 [Additional Information](#additional-information)  
 - [Database Configuration](#database-configuration)  
 - [External JARs](#external-jars)  
 - [CSV Data Cleaning](#csv-data-cleaning)  
+
 [Brief](#brief)
 
 
