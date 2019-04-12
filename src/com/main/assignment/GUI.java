@@ -42,14 +42,15 @@ public class GUI extends JFrame {
 		 * cb = Check Box
 		 * ta = Text Area
 		 */
+		private JLabel lbTitle;
 		private JTable tbTable;
 		private JTextField tfFilter;
 		private JButton btFilter;
-		private JLabel lbTitle;
 		private JButton btClearDB;
+		private JButton btPullDB;
 		private JButton btSelectFile;
-		private JCheckBox cbHeader;
 		private JButton btImportFile;
+		private JCheckBox cbHeader;
 		private JButton btQuit;
 		private JButton btAdmin;
 		private JButton btStop;
@@ -57,7 +58,6 @@ public class GUI extends JFrame {
 		private JButton btLocality;
 		private JButton btName;
 		private JTextArea taOutput;
-		private JButton btPullDB;
 		private TableRowSorter<DefaultTableModel> sorter;
 
 		/**
