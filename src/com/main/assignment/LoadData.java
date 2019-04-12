@@ -34,7 +34,7 @@ public class LoadData {
 		final DefaultTableModel model = (DefaultTableModel) tbTable.getModel();
 		JFileChooser fileopen = new JFileChooser();
 		FileFilter filter = new FileNameExtensionFilter("Text/CSV file", "txt", "csv");
-		fileopen.addChoosableFileFilter(filter);
+		fileopen.setFileFilter(filter);
 
 		int ret = fileopen.showDialog(null, "Choose file");
 		if (ret == JFileChooser.APPROVE_OPTION) {
