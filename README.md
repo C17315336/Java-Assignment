@@ -7,6 +7,10 @@ Completed by Eoghan Byrne (C17315336)
 ## Index
 [Brief](#brief)  
 [Overview](#overview)
+[Classes](#classes)
+  [Control](#control)
+  [GUI](#gui)
+  [Admin](#admin)
 
 ## Overview
 The program is designed to allow a user to launch the application, import their cleaned data of the [TFI Bus Stops](https://data.gov.ie/dataset/b61d8abf-efd1-4476-a29b-afc8c2edd6ba/resource/6db74b2d-c7d3-4faf-a922-851c042715ba) and see filtered views with row counts on each query  
@@ -94,9 +98,9 @@ More specifically the _SaveData_ class is only called by _btImportFile_ which ca
 
 ```java
 String sql = "INSERT INTO " + ConnectionInfo.getDbtable()
-						+ " (StopNumber,NamewithoutLocality,Locality,Name,Easting,Northing) " + "VALUES ('" + StopNumber
-						+ "','" + NamewithoutLocality + "','" + Locality + "'" + ",'" + Name + "','" + Easting + "','"
-						+ Northing + "') ";
+						+ " (StopNumber,NamewithoutLocality,Locality,Name,Easting,Northing) " +
+						"VALUES ('" + StopNumber + "','" + NamewithoutLocality + "','" +
+						Locality + "'" + ",'" + Name + "','" + Easting + "','" + Northing + "') ";
 ```
 
 ### SortDataAs & SortDataDs
@@ -106,12 +110,18 @@ There are separate classes to allow the user to **RIGHT Click** for Ascending an
 
 ## Additional Information
 ### Database Configuration
-This is a `.sql` file which will build the required table of:  
+There is a `.sql` file which will build the required table of:  
 +------------+---------------------+----------+------+---------+----------+  
 | StopNumber | NamewithoutLocality | Locality | Name | Easting | Northing |  
 +------------+---------------------+----------+------+---------+----------+  
-|            |                     |          |      |         |          |  
-+------------+---------------------+----------+------+---------+----------+  
+
+### External JARs
+There are 2 associated JARs which must be configured in the Build Path
+
+### CSV Data Cleaning
+As there is plain English which has been converted to a `.CSV` format, it has been required to change the ASCII character from **'** to **^** and additionally goes for the ASCII character of **,** which is now **..**  
+
+*Note - The general downloadable CSV of TFI Bus Stops has a row count of over 17,000, my demo CSV file will import 3,500 rows
 
 ## Brief
 **2. Data Explorer**  
