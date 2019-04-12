@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.JPanel;
-import javax.swing.BorderFactory;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.GridBagConstraints;
@@ -245,7 +244,7 @@ public class Admin extends JFrame {
 				ConnectionInfo.setDbpass(tfPassword.getText());
 				ConnectionInfo.setDbdata(tfDatabase.getText());
 				ConnectionInfo.setDbtable(tfTable.getText());
-				System.out.println("jdbc:mysql://" + ConnectionInfo.getDbdomain() + ":" + ConnectionInfo.getDbport() + "/" + ConnectionInfo.getDbdata() + ", " + ConnectionInfo.getDbuser() + ", " + ConnectionInfo.getDbpass());
+				//System.out.println("jdbc:mysql://" + ConnectionInfo.getDbdomain() + ":" + ConnectionInfo.getDbport() + "/" + ConnectionInfo.getDbdata() + ", " + ConnectionInfo.getDbuser() + ", " + ConnectionInfo.getDbpass());
 				ConnectionInfo.setDburl("jdbc:mysql://" + ConnectionInfo.getDbdomain() + ":" + ConnectionInfo.getDbport() + "/" + ConnectionInfo.getDbdata());
 			}
 		}

@@ -6,14 +6,14 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import javax.swing.JFileChooser;
-import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 public class LoadData {
-	public LoadData(JTable tbTable, JLabel lbOutput) {
+	public LoadData(JTable tbTable, JTextArea taOutput) {
 		final DefaultTableModel model = (DefaultTableModel) tbTable.getModel();
 		JFileChooser fileopen = new JFileChooser();
 		FileFilter filter = new FileNameExtensionFilter("Text/CSV file", "txt", "csv");
@@ -47,7 +47,7 @@ public class LoadData {
 				ex.printStackTrace();
 			}
 
-			lbOutput.setText(fileopen.getSelectedFile().toString());
+			taOutput.append("File selected: " + fileopen.getSelectedFile().toString() + "\nProceed to request import\n");
 		}
 	}
 

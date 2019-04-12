@@ -1,15 +1,22 @@
 package com.main.assignment;
 
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
+
+import javax.swing.event.*;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableRowSorter;
+import javax.swing.text.BadLocationException;
+
+import net.proteanit.sql.DbUtils;
+
+import java.awt.Dimension;
+import java.awt.Component;
+
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-import javax.swing.table.TableRowSorter;
-import javax.swing.JPanel;
-import javax.swing.BorderFactory;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -22,41 +29,15 @@ import java.io.IOException;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.JTable;
-import javax.swing.JScrollPane;
 import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.RowSorter;
-import javax.swing.SortOrder;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JCheckBox;
-import javax.swing.JFileChooser;
-
 import java.awt.EventQueue;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JButton;
-import javax.swing.JFileChooser;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.filechooser.FileFilter;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.DefaultTableModel;
+import java.util.Vector;
 
 /**
  * @author Administrator
@@ -84,8 +65,9 @@ public class GUI extends JFrame {
 		private JButton btNameLocal;
 		private JButton btLocality;
 		private JButton btName;
-		private JLabel lbOutput;
+		private JTextArea taOutput;
 		private JButton btPullDB;
+		private TableRowSorter<DefaultTableModel> sorter;
 
 		/**
 		 * Constructor for the Window object
@@ -110,6 +92,7 @@ public class GUI extends JFrame {
 			model.addColumn("Name");
 			model.addColumn("Easting");
 			model.addColumn("Northing");
+			tbTable.setRowSorter(sorter);
 			JScrollPane scpTable = new JScrollPane(tbTable);
 			gbcWindow.gridx = 1;
 			gbcWindow.gridy = 1;
@@ -121,8 +104,10 @@ public class GUI extends JFrame {
 			gbcWindow.anchor = GridBagConstraints.NORTH;
 			gbWindow.setConstraints(scpTable, gbcWindow);
 			add(scpTable);
+			
 
 			tfFilter = new JTextField();
+			tfFilter = RowFilterUtil.createRowFilter(tbTable);
 			tfFilter.setColumns(10);
 			gbcWindow.gridx = 5;
 			gbcWindow.gridy = 0;
@@ -307,13 +292,13 @@ public class GUI extends JFrame {
 			gbWindow.setConstraints(btName, gbcWindow);
 			add(btName);
 
-			lbOutput = new JLabel("");
-			JScrollPane scpOutput = new JScrollPane(lbOutput);
+			taOutput = new JTextArea("*** LOG ***\nApplication Started\nPlease pull from database first\n\n", 2, 10);
+			JScrollPane scpOutput = new JScrollPane(taOutput);
 			gbcWindow.gridx = 0;
 			gbcWindow.gridy = 7;
 			gbcWindow.gridwidth = 1;
 			gbcWindow.gridheight = 1;
-			gbcWindow.fill = GridBagConstraints.HORIZONTAL;
+			gbcWindow.fill = GridBagConstraints.BOTH;
 			gbcWindow.weightx = 1;
 			gbcWindow.weighty = 1;
 			gbcWindow.anchor = GridBagConstraints.NORTH;
@@ -340,17 +325,21 @@ public class GUI extends JFrame {
 		public void actionPerformed(ActionEvent e) {
 			if (e.getSource() == btFilter) {
 				// Action for btFilter
+				new Filter(tbTable, tfFilter.getText());
+				taOutput.append("Total rows of: " + tbTable.getRowCount() + "\nFor keyword '" + tfFilter.getText() + "'\n\n");
 			}
 			if (e.getSource() == btClearDB) {
 				// Action for btClearDB
+				taOutput.append("Erase Requested\n\n");
 				new EraseData();
 			}
 			if (e.getSource() == btSelectFile) {
 				// Action for btSelectFile
-				new LoadData(tbTable, lbOutput);
+				new LoadData(tbTable, taOutput);
 			}
 			if (e.getSource() == btImportFile) {
 				new SaveData(tbTable);
+				taOutput.append("\nTotal rows of: " + tbTable.getRowCount() + " imported\n\n");
 			}
 			if (e.getSource() == btQuit) {
 				// Action for btQuit
@@ -361,6 +350,7 @@ public class GUI extends JFrame {
 			if (e.getSource() == btAdmin) {
 				// Action for btAdmin
 				new Admin();
+				taOutput.append("\n*** Admin panel accessed ***\n\n\n");
 			}
 			if (e.getSource() == btStop) {
 				// Action for btStop
@@ -381,6 +371,8 @@ public class GUI extends JFrame {
 			if (e.getSource() == btPullDB) {
 				// Action for btPullDB
 				new PullData(tbTable);
+				taOutput.append("Pull Requested\n");
+				taOutput.append("Total rows of: " + tbTable.getRowCount() + " pulled\n\n");
 			}
 			if (e.getSource() == cbHeader) {
 				// Action for cbHeader
@@ -399,7 +391,7 @@ public class GUI extends JFrame {
 					}
 				}
 			});
-			
+
 			btNameLocal.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -408,7 +400,7 @@ public class GUI extends JFrame {
 					}
 				}
 			});
-			
+
 			btLocality.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -417,7 +409,7 @@ public class GUI extends JFrame {
 					}
 				}
 			});
-			
+
 			btName.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -426,7 +418,10 @@ public class GUI extends JFrame {
 					}
 				}
 			});
+
 		}
+		
+
 	}
 
 	Window pnWindow;

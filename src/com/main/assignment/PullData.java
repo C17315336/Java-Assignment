@@ -4,13 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-
 import net.proteanit.sql.DbUtils;
 
 public class PullData {
@@ -20,11 +17,8 @@ public class PullData {
 
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-
 			connect = DriverManager.getConnection(ConnectionInfo.getDburl(), ConnectionInfo.getDbuser(), ConnectionInfo.getDbpass());
-
 			s = connect.createStatement();
-
 			PreparedStatement st = connect.prepareStatement("Select * from " + ConnectionInfo.getDbtable() + ";");
 			ResultSet rs = st.executeQuery();
 			tbTable.setModel(DbUtils.resultSetToTableModel(rs));
