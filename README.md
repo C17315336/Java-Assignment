@@ -11,6 +11,19 @@ Completed by Eoghan Byrne (C17315336)
 - [Control](#control)  
 - [GUI](#gui)  
 - [Admin](#admin)  
+- [ConnectionInfo](#connectioninfo)  
+- [EraseData](#erasedata)  
+- [Filter](#filter)  
+- [LoadData](#loaddata)  
+- [PullData](#pulldata)  
+- [SaveData](#savedata)  
+- [SortDataAs & SortDataDs](#sortdataas-&-sortdatads)  
+[Additional Information](#additional-information)  
+- [Database Configuration](#database-configuration)  
+- [External JARs](#external-jars)  
+- [CSV Data Cleaning](#csv-data-cleaning)  
+[Brief](#brief)
+
 
 ## Overview
 The program is designed to allow a user to launch the application, import their cleaned data of the [TFI Bus Stops](https://data.gov.ie/dataset/b61d8abf-efd1-4476-a29b-afc8c2edd6ba/resource/6db74b2d-c7d3-4faf-a922-851c042715ba) and see filtered views with row counts on each query  
@@ -74,7 +87,7 @@ connect = DriverManager.getConnection(jdbc:mysql://localhost:8889/java, Eoghan, 
 This class is primarily a holding point for all the _"global variables"_ if you will  
 This is just where the individual variables of admin settings are held
 
-### Erase Data
+### EraseData
 This class is used to erase the contents of the database entirely  
 It does this by connecting to the database and executing the line of _SQL_  
 ``` SQL
