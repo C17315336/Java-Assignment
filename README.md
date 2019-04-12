@@ -31,7 +31,7 @@ Completed by Eoghan Byrne (C17315336)
 The program is designed to allow a user to launch the application, import their cleaned data of the [TFI Bus Stops](https://data.gov.ie/dataset/b61d8abf-efd1-4476-a29b-afc8c2edd6ba/resource/6db74b2d-c7d3-4faf-a922-851c042715ba) and see filtered views with row counts on each query  
 The user can also configure their required settings to connect to their own database. (_Note there is no remote database connection available for demo_)  
 
-[Link to Video Explanation](https://drive.google.com/file/d/1ELxCeChoeXsOi_z0bUUY_ENndT6KawCp/view?usp=sharing)
+[Link to Video Explanation](https://drive.google.com/file/d/1ELxCeChoeXsOi_z0bUUY_ENndT6KawCp/view?usp=sharing)  
 [Link to Github](https://github.com/C17315336/Java-Assignment/)
 
 ## Classes
