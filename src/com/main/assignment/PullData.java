@@ -24,6 +24,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import net.proteanit.sql.DbUtils;
 
+// Code based off Vogella
+// https://www.vogella.com/tutorials/MySQLJava/article.html
 public class PullData {
 	public PullData(JTable tbTable) {
 		Connection connect = null;

@@ -26,6 +26,8 @@ import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
+// Code based of Java Code Geeks
+// https://examples.javacodegeeks.com/core-java/sql/import-csv-file-to-mysql-table-java-example/
 public class LoadData {
 	public LoadData(JTable tbTable, JTextArea taOutput) {
 		// File selector

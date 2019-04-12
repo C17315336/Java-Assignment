@@ -14,6 +14,7 @@ package com.main.assignment;
  * 		- DbUtils
  */
 
+// Code based of "Sample JDBC code for those doing dB assignment" Dr Susan McKeever
 public class ConnectionInfo {
 	/**
 	 * Attributes - with default connection values
